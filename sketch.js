@@ -8,6 +8,16 @@ let addMoreButton;
 let cnv;
 let nameInputs = [];
 let firstTime = true;
+let funnyanimals = [];
+let imageCounter = 0;
+let randomNumber = 0;
+
+function preload() {
+  for(let i = 0; i <= 10; i++) {
+    funnyanimals[i] = loadImage("assets/funnyanimals_" + i + ".jpg");
+    console.log(funnyanimals);
+  }
+}
 
 function setup() {
   //createCanvas(400, 400);
@@ -31,25 +41,23 @@ function setup() {
     nameInputs.push(createInput());
     nameInputs[nameInputs.length - 1].parent("#inputFields");
   }
+
+  randomNumber = int(random(0, 10));
+  image(funnyanimals[randomNumber], windowWidth/3, windowHeight/6);
+  //text(randomNumber, windowWidth / 3, windowHeight / 6);
 }
 
 function draw() {
     if (animating == true) {
-      fill(random(200), random(0), random(20), 75)
-      ellipse(random(width), random(height), sizze,)
-      sizze = sizze+5;
+      clear();
+      image(funnyanimals[imageCounter], windowWidth/3, windowHeight/6);
+      if (imageCounter < funnyanimals.length) {
+        imageCounter++;
+        }
     } else {
-      sizze = 0;
+      imageCounter = 0;
     }
-    //image("assets/funnyanimals_"+0+"jpg",  windowWidth/2, windowHeight/2);
   }
-
-
-
-function addAnotherInput() {
-    nameInputs.push(createInput());
-    nameInputs[nameInputs.length - 1].parent("#inputFields");
-}
 
 function randomizer(){
   animating = false;
@@ -62,9 +70,11 @@ function randomizer(){
   textSize(70);
   strokeWeight(10);
   textAlign(CENTER, TOP);
-  text(roster[1], width / 2, height / 20);
+  text(roster[1], windowWidth / 2, windowHeight / 20);
   textAlign(CENTER, BOTTOM);
-  text(roster[2], width / 2, height);
+  text(roster[2], windowWidth / 2, windowHeight);
+
+  image(funnyanimals[randomNumber], windowWidth/3, windowHeight/6);
 }
 
 function buttonPressed() {

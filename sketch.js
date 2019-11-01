@@ -11,12 +11,15 @@ let firstTime = true;
 let funnyanimals = [];
 let imageCounter = 0;
 let randomNumber = 0;
+let cartoonSound;
 
 function preload() {
   for(let i = 0; i <= 10; i++) {
     funnyanimals[i] = loadImage("assets/funnyanimals_" + i + ".jpg");
     console.log(funnyanimals);
   }
+  soundFormats('mp3', 'ogg');
+  cartoonSound = loadSound('assets/cartoonsoundeffect.mp3');
 }
 
 function setup() {
@@ -78,7 +81,8 @@ function randomizer(){
 }
 
 function buttonPressed() {
-
+  cartoonSound.setVolume(0.1);
+  cartoonSound.play();
   if(firstTime) {
     for (let i = 0; i < nameInputs.length; i++) {
       roster.push(nameInputs[i].value());
